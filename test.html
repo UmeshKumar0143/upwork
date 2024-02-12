@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+
+        <div x-data="{ openTab: 'London' }" class="font-sans">
+            <h2 class="text-2xl font-bold mb-4">Tabs</h2>
+            <p class="mb-4">Click on the buttons inside the tabbed menu:</p>
+        
+            <div class="border-b-2">
+                <button :class="{ 'bg-gray-200': openTab === 'London' }" @click="openTab = 'London'" class="py-2 px-4 focus:outline-none">London</button>
+                <button :class="{ 'bg-gray-200': openTab === 'Paris' }" @click="openTab = 'Paris'" class="py-2 px-4 focus:outline-none">Paris</button>
+                <button :class="{ 'bg-gray-200': openTab === 'Tokyo' }" @click="openTab = 'Tokyo'" class="py-2 px-4 focus:outline-none">Tokyo</button>
+            </div>
+        
+            <div x-show="openTab === 'London'" class="p-4 border">
+                <h3 class="font-semibold text-lg">London</h3>
+                <p>London is the capital city of England.</p>
+            </div>
+        
+            <div x-show="openTab === 'Paris'" class="p-4 border hidden">
+                <h3 class="font-semibold text-lg">Paris</h3>
+                <p>Paris is the capital of France.</p>
+            </div>
+        
+            <div x-show="openTab === 'Tokyo'" class="p-4 border hidden">
+                <h3 class="font-semibold text-lg">Tokyo</h3>
+                <p>Tokyo is the capital of Japan.</p>
+            </div>
+        </div>
+
+        
+</body>
+</html>
