@@ -8,6 +8,7 @@
     <!-- <script src="//unpkg.com/alpinejs" defer></script> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
     <!-- <link href="//cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
 </head>
@@ -67,25 +68,24 @@
                             x-transition:leave="transition ease-in duration-75"
                             x-transition:leave-start="transform opacity-100 scale-100"
                             x-transition:leave-end="transform opacity-0 scale-95"
-                            class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-2 w-52 h-64 overflow-y-scroll bg-white shadow-xl rounded divide-y divide-gray-100"
+                            class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-2 w-48 h-64 overflow-y-scroll bg-white shadow-xl rounded divide-y divide-gray-100"
                             @click="open = false">
                             <ul class="py-1 text-gray-700">
                                 <li class="block text-[16px] px-4 py-2 text-gray-400">Filter conversation by</li>
-                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">All</a></li>
-                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Unread</a></li>
-                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Favorites</a></li>
-                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Interviews</a>
+                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100"><i class="bx bx-check text-green-600 mr-2"></i>All</a></li>
+                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100"><i class="bx bx-envelope mr-2"></i>Unread</a></li>
+                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100"><i class="bx bx-star mr-2"></i>Favorites</a></li>
+                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100"><i class="bx bx-briefcase mr-2"></i>Interviews</a>
                                 </li>
-                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Contracts</a></li>
-                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Fixed-price
+                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100"><i class="fa fa-paper-plane mr-2"></i>Contracts</a></li>
+                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100"><i class="bx bx-paperclip mr-2"></i>Fixed-price
                                         contract</a></li>
-                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Hourly
+                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100"><i class="bx bx-stopwatch mr-2"></i>Hourly
                                         contract</a></li>
-                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Hidden &
+                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100"><i class="bx bx-hide mr-2"></i>Hidden &
                                         Achived</a></li>
-                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Filter messages
-                                        by</a></li>
-                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Favorites
+                                <li class="block text-[16px] px-4 py-2 text-gray-400">Filter messagesby</li>
+                                <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100"><i class="bx bx-star mr-2"></i>Favorites
                                         messages</a></li>
 
                             </ul>
@@ -111,26 +111,50 @@
                                         Jespder Poulsen
                                     </p>
                                     <p class="text-sm text-gray-400 ml-2 w-max"
-                                       :class="{ 'text-white': activeDiv === 'div1'}">Yesterday</p>
+                                        :class="{ 'text-white': activeDiv === 'div1'}">Yesterday</p>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <div class="w-full group-hover:w-1/2">
                                         <p class="text-sm w-full overflow-hidden whitespace-nowrap text-ellipsis"
-                                           :class="{ 'text-white': activeDiv === 'div1'}">
+                                            :class="{ 'text-white': activeDiv === 'div1'}">
                                             Change text a plaasdfaacesasdfasdfasdf
                                         </p>
                                         <p class="text-sm text-gray-500 w-full overflow-hidden whitespace-nowrap text-ellipsis"
-                                           :class="{ 'text-white': activeDiv === 'div1'}">
+                                            :class="{ 'text-white': activeDiv === 'div1'}">
                                             text a placesasdfasdfasdfasdfasdfasdf
                                         </p>
                                     </div>
                                     <div class="flex justify-center items-center">
-                                        <div class="hidden group-hover:block">
+                                        <div class="hidden group-hover:flex justify-between gap-[5px] items-center">
                                             <!-- Toggle isFavourite on click -->
                                             <i @click="favourites['div1'] = !favourites['div1']"
-                                               class="bx p-1 rounded-full border-2 cursor-pointer text-green-600 bg-white border-gray-100 shadow-inner"
-                                               :class="{'bx-star': !favourites['div1'], 'bxs-star text-yellow-400': favourites['div1']}"></i>
-                                            <i class="bx p-1 bx-dots-vertical-rounded text-green-600 bg-white rounded-full cursor-pointer rotate-90 border-2 border-gray-100 shadow-inner"></i>
+                                                class="bx p-1 rounded-full border-2 cursor-pointer text-green-600 bg-white border-gray-100 shadow-inner"
+                                                :class="{'bx-star': !favourites['div1'], 'bxs-star text-yellow-400': favourites['div1']}"></i>
+
+
+                                            <div x-data="{ open: false }" @click.away="open = false" class="relative">
+                                                <button @click="open = !open">
+                                                    <i
+                                                        class="bx p-1 bx-dots-vertical-rounded text-green-600 bg-white rounded-full cursor-pointer rotate-90 border-2 border-gray-100 shadow-inner"></i>
+                                                </button>
+                                                <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                                                    x-transition:enter-start="transform opacity-0 scale-95"
+                                                    x-transition:enter-end="transform opacity-100 scale-100"
+                                                    x-transition:leave="transition ease-in duration-75"
+                                                    x-transition:leave-start="transform opacity-100 scale-100"
+                                                    x-transition:leave-end="transform opacity-0 scale-95"
+                                                    class="absolute z-10 -bottom-[20%] right-10 w-40 bg-white shadow-xl rounded divide-y divide-gray-100"
+                                                    @click="open = false" @mouseleave="open = false">
+                                                    <ul class="py-1 text-gray-700">
+                                                        <li><a href="#"
+                                                                class="block text-[16px] px-4 py-1 hover:bg-gray-100">Add to Favorites</a></li>
+                                                        <li><a href="#"
+                                                                class="block text-[16px] px-4 py-1 hover:bg-gray-100">Hide</a></li>
+
+
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -152,35 +176,55 @@
                                         Jespder Poulsen
                                     </p>
                                     <p class="text-sm text-gray-400 ml-2 w-max"
-                                       :class="{ 'text-white': activeDiv === 'div2'}">Yesterday</p>
+                                        :class="{ 'text-white': activeDiv === 'div2'}">Yesterday</p>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <div class="w-full group-hover:w-1/2">
                                         <p class="text-sm w-full overflow-hidden whitespace-nowrap text-ellipsis"
-                                           :class="{ 'text-white': activeDiv === 'div2'}">
+                                            :class="{ 'text-white': activeDiv === 'div2'}">
                                             Change text a plaasdfaacesasdfasdfasdf
                                         </p>
                                         <p class="text-sm text-gray-500 w-full overflow-hidden whitespace-nowrap text-ellipsis"
-                                           :class="{ 'text-white': activeDiv === 'div2'}">
+                                            :class="{ 'text-white': activeDiv === 'div2'}">
                                             text a placesasdfasdfasdfasdfasdfasdf
                                         </p>
                                     </div>
                                     <div class="flex justify-center items-center">
-                                        <div class="hidden group-hover:block">
-                                            <!-- Toggle isFavourite on click -->
+                                        <div class="hidden group-hover:flex justify-between gap-[5px] items-center">
+
                                             <i @click="favourites['div2'] = !favourites['div2']"
-                                               class="bx p-1 rounded-full border-2 cursor-pointer text-green-600 bg-white border-gray-100 shadow-inner"
-                                               :class="{'bx-star': !favourites['div2'], 'bxs-star text-yellow-400': favourites['div2']}"></i>
-                                            <i class="bx p-1 bx-dots-vertical-rounded text-green-600 bg-white rounded-full cursor-pointer rotate-90 border-2 border-gray-100 shadow-inner"></i>
+                                                class="bx p-1 rounded-full border-2 cursor-pointer text-green-600 bg-white border-gray-100 shadow-inner"
+                                                :class="{'bx-star': !favourites['div2'], 'bxs-star text-yellow-400': favourites['div2']}"></i>
+
+                                            <div x-data="{ open: false }" @click.away="open = false" class="relative">
+                                                <button @click="open = !open">
+                                                    <i
+                                                        class="bx p-1 bx-dots-vertical-rounded text-green-600 bg-white rounded-full cursor-pointer rotate-90 border-2 border-gray-100 shadow-inner"></i>
+                                                </button>
+                                                <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                                                    x-transition:enter-start="transform opacity-0 scale-95"
+                                                    x-transition:enter-end="transform opacity-100 scale-100"
+                                                    x-transition:leave="transition ease-in duration-75"
+                                                    x-transition:leave-start="transform opacity-100 scale-100"
+                                                    x-transition:leave-end="transform opacity-0 scale-95"
+                                                    class="absolute z-10 -bottom-[20%] right-10 w-40 bg-white shadow-xl rounded divide-y divide-gray-100"
+                                                    @click="open = false" @mouseleave="open = false">
+                                                    <ul class="py-1 text-gray-700">
+                                                        <li><a href="#"
+                                                                class="block text-[16px] px-4 py-1 hover:bg-gray-100">Add to Favorites</a></li>
+                                                        <li><a href="#"
+                                                                class="block text-[16px] px-4 py-1 hover:bg-gray-100">Hide</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <!-- Similar structure for the second list item with 'div2' -->
                 </ul>
-                
             </div>
         </div>
         <div class="flex h-screen w-[calc(100%-352px)]">
@@ -195,8 +239,27 @@
                             </h5>
                         </div>
                         <div class="flex items-center">
-                            <div class="w-8 h-8 flex items-center p-2 border-[1px] rounded-full">
-                                <i class="bx bx-video text-green-600 cursor-pointer"></i>
+
+                            <div x-data="{ open: false }" @click.away="open = false" class="relative">
+                                <button @click="open = !open">
+                                    <i
+                                        class="p-2 border-[1px] border-gray-300 rounded-full bx bx-video text-green-600 cursor-pointer"></i>
+                                </button>
+                                <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                                    x-transition:enter-start="transform opacity-0 scale-95"
+                                    x-transition:enter-end="transform opacity-100 scale-100"
+                                    x-transition:leave="transition ease-in duration-75"
+                                    x-transition:leave-start="transform opacity-100 scale-100"
+                                    x-transition:leave-end="transform opacity-0 scale-95"
+                                    class="absolute z-10 -right-[20px] mt-2 w-60 bg-white shadow-xl rounded divide-y divide-gray-100"
+                                    @click="open = false">
+                                    <ul class="py-1 text-gray-700">
+                                        <li><a href="#" class="flex items-center text-[16px] px-4 py-1 hover:bg-gray-50"><i class="bx bxl-zoom text-blue-700 mr-2 text-lg" ></i>Zoom Meeting</a></li>
+                                        <li><a href="#" class="flex items-center text-[16px] px-4 py-1 hover:bg-gray-50"><i class="bx bxs-video-recording text-blue-700 mr-2 text-lg" ></i>Recorded Zoom Meeting</a></li>
+                                        <li><a href="#" class="flex items-center text-[16px] px-4 py-1 hover:bg-gray-50"><i class="fa fa-phone text-blue-700 text-lg mr-2"></i>Dial in to Zoom meeting</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="ml-4 w-10 h-10 flex items-center p-2 border-[1px] rounded-full">
                                 <i class="bx bx-window text-xl text-green-600 cursor-pointer"></i>
