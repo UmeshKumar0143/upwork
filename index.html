@@ -9,13 +9,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
-    <!-- <link href="//cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
+
 </head>
 
 <body>
-    <main class="h-screen flex">
-        <div class="ml-8 pt-4 w-[312px] flex flex-col h-screen">
+    <main class="h-screen flex" x-data="{ isOpen: false }">
+        <div class="xl:px-0 xl:ml-8 xl:w-[312px] flex flex-col h-screen w-full m-auto p-5 pt-4">
             <div class="">
                 <div class=" flex justify-between items-center">
                     <h2 class="text-3xl font-semibold">Messages</h2>
@@ -49,7 +48,7 @@
                     </div>
                 </div>
 
-                <div x-data="{ inputFocused: false, inputValue: '' }" class="mt-4 flex justify-between items-center">
+                <div x-data="{ inputFocused: false, inputValue: '' }" class="mt-4 flex justify-start items-center">
                     <div class="border-[2px] flex items-center rounded-full max-w-[250px]"
                         :class="{'border-gray-600': inputFocused}">
                         <i class="pl-2 bx bx-search"></i>
@@ -68,7 +67,7 @@
                             x-transition:leave="transition ease-in duration-75"
                             x-transition:leave-start="transform opacity-100 scale-100"
                             x-transition:leave-end="transform opacity-0 scale-95"
-                            class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-2 w-48 h-64 overflow-y-scroll bg-white shadow-xl rounded divide-y divide-gray-100"
+                            class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-2 w-52 h-64 overflow-y-scroll bg-white shadow-xl rounded divide-y divide-gray-100"
                             @click="open = false">
                             <ul class="py-1 text-gray-700">
                                 <li class="block text-[16px] px-4 py-2 text-gray-400">Filter conversation by</li>
@@ -113,11 +112,14 @@
                             </div>
                             <div class="w-[calc(100%-58px)] ml-2">
                                 <div class="flex flex-[0] items-center justify-between">
-                                    <i class="bx " :class="{ 'bxs-star text-gray-600': favourites['div1'] }"></i>
-                                    <p :class="{ 'text-white': activeDiv === 'div1' }"
-                                        class="overflow-hidden whitespace-nowrap text-ellipsis">
-                                        Jespder Poulsen
-                                    </p>
+                                    <div class="flex items-center justify-between w-full overflow-hidden whitespace-nowrap text-ellipsis ">
+                                        <i class="bx " :class="{ 'bxs-star text-gray-600': favourites['div1'] }"></i>
+                                        <p :class="{ 'text-white': activeDiv === 'div1' }"
+                                            class="w-full overflow-hidden whitespace-nowrap text-ellipsis">
+                                            Jespder Poulsen
+                                        </p>
+                                    </div>
+
                                     <p class="text-sm text-gray-400 ml-2 w-max"
                                         :class="{ 'text-white': activeDiv === 'div1'}">Yesterday</p>
                                 </div>
@@ -180,11 +182,13 @@
                             </div>
                             <div class="w-[calc(100%-58px)] ml-2">
                                 <div class="flex flex-[0] items-center justify-between">
-                                    <i class="bx " :class="{ 'bxs-star text-gray-600': favourites['div2'] }"></i>
-                                    <p :class="{ 'text-white': activeDiv === 'div2' }"
-                                        class="overflow-hidden whitespace-nowrap text-ellipsis">
-                                        Jespder Poulsen
-                                    </p>
+                                    <div class="flex items-center justify-between w-full overflow-hidden whitespace-nowrap text-ellipsis ">
+                                        <i class="bx " :class="{ 'bxs-star text-gray-600': favourites['div2'] }"></i>
+                                        <p :class="{ 'text-white': activeDiv === 'div2' }"
+                                            class="w-full overflow-hidden whitespace-nowrap text-ellipsis">
+                                            Jespder Poulsen
+                                        </p>
+                                    </div>
                                     <p class="text-sm text-gray-400 ml-2 w-max"
                                         :class="{ 'text-white': activeDiv === 'div2'}">Yesterday</p>
                                 </div>
@@ -238,8 +242,9 @@
                 </ul>
             </div>
         </div>
-        <div class="flex h-screen w-[calc(100%-352px)]">
-            <div class="pl-8 w-full pt-5 flex flex-col h-full justify-between">
+        <div class="xl:flex h-screen hidden xl:w-[calc(100%-260px)]">
+            <div class="pl-8 w-full pt-5 flex flex-col h-full justify-between transition-all duration-500"
+                :class="isOpen ? 'px-8' : 'px-0'">
                 <div class="">
                     <div class="flex justify-between items-center pb-4 border-b-[1px] border-b-gray-300">
                         <div class="pl-4 flex items-end">
@@ -280,7 +285,9 @@
                                 </div>
                             </div>
                             <div class="ml-4 w-10 h-10 flex items-center p-2 border-[1px] rounded-full">
-                                <i class="bx bx-window text-xl text-green-600 cursor-pointer"></i>
+                                <button @click="isOpen = !isOpen">
+                                    <i class="bx bx-window text-xl text-green-600 cursor-pointer"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -425,197 +432,6 @@
                             <p class="text-gray-400 text-[18px]">Fri, Feb 09</p>
                             <div class="border-[1px] m-2 rounded-sm border-gray-200 w-5/12"></div>
                         </div>
-                        <li class="group p-2 rounded-xl hover:bg-gray-200">
-                            <div class="flex">
-                                <div class="relative min-w-[48px] w-8">
-                                    <img src="./assets/avatar.jpg" alt="" class="w-full rounded-full" />
-                                    <div class="w-3 h-3 bg-green-500 border-[1px] top-0 left-0 rounded-full absolute">
-                                    </div>
-                                </div>
-                                <div class="w-[calc(100%-58px)] ml-2">
-                                    <div class="flex justify-between">
-                                        <div class="flex flex-[0] items-end">
-                                            <p
-                                                class="overflow-hidden whitespace-nowrap text-ellipsis font-semibold text-gray-800">
-                                                Poul Sen</p>
-                                            <p class="text-xs ml-2 w-max text-gray-500">5:00AM</p>
-                                        </div>
-                                        <div x-data="{ isFavourite: false }">
-                                            <div class="mr-4 hidden group-hover:flex justify-between items-center">
-                                                <i class="bx mr-2 rounded-full border-2 cursor-pointer border-gray-100 shadow-inner"
-                                                    :class="{'bx-star': !isFavourite, 'bxs-star text-yellow-400': isFavourite}"
-                                                    @click="isFavourite = !isFavourite"></i>
-                                                <!-- <i
-                                                    class="bx bx-dots-vertical-rounded  text-green-600 rounded-full cursor-pointer rotate-90 border-2 border-gray-100 shadow-inner"></i>
-                                             -->
-
-                                                <div x-data="{ open: false }" @click.away="open = false"
-                                                    class="relative">
-                                                    <button @click="open = !open">
-                                                        <i
-                                                            class="bx bx-dots-vertical-rounded  text-green-600 rounded-full cursor-pointer rotate-90 border-2 border-gray-100 shadow-inner"></i>
-                                                    </button>
-                                                    <div x-show="open"
-                                                        x-transition:enter="transition ease-out duration-200"
-                                                        x-transition:enter-start="transform opacity-0 scale-95"
-                                                        x-transition:enter-end="transform opacity-100 scale-100"
-                                                        x-transition:leave="transition ease-in duration-75"
-                                                        x-transition:leave-start="transform opacity-100 scale-100"
-                                                        x-transition:leave-end="transform opacity-0 scale-95"
-                                                        class="absolute z-10 right-0 mt-2 w-44 bg-white shadow-xl rounded divide-y divide-gray-100"
-                                                        @click="open = false" @mouseleave="open = false">
-                                                        <ul class="py-1 text-gray-700">
-                                                            <li><a href="#"
-                                                                    class="flex items-center text-[16px] px-4 py-2 hover:bg-gray-100"><i
-                                                                        class="bx bxs-quote-alt-left mr-2 text-[16px]"></i>Quote
-                                                                    message</a></li>
-                                                            <li><a href="#"
-                                                                    class="flex items-center text-[16px] px-4 py-2 hover:bg-gray-100 "><i
-                                                                        class="bx bx-error-circle mr-2 text-[16px]"></i>Report
-                                                                    message</a></li>
-                                                            <li><a href="#"
-                                                                    class="flex items-center text-[16px] px-4 py-2 hover:bg-gray-100"><i
-                                                                        class="bx bx-envelope mr-2 text-[18px]"></i>Mark
-                                                                    as unread</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <p class="text-sm leading-6 w-max text-gray-700">If you need anything more let me
-                                        know. Thank you</p>
-                                    <p class="text-sm leading-6 w-max text-gray-700">We are going to use that</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="group p-2 rounded-xl hover:bg-gray-200">
-                            <div class="flex">
-                                <div class="relative min-w-[48px] w-8">
-                                    <img src="./assets/avatar.jpg" alt="" class="w-full rounded-full" />
-                                    <div class="w-3 h-3 bg-green-500 border-[1px] top-0 left-0 rounded-full absolute">
-                                    </div>
-                                </div>
-                                <div class="w-[calc(100%-58px)] ml-2">
-                                    <div class="flex justify-between">
-                                        <div class="flex flex-[0] items-end">
-                                            <p
-                                                class="overflow-hidden whitespace-nowrap text-ellipsis font-semibold text-gray-800">
-                                                Poul Sen</p>
-                                            <p class="text-xs ml-2 w-max text-gray-500">5:00AM</p>
-                                        </div>
-                                        <div x-data="{ isFavourite: false }">
-                                            <div class="mr-4 hidden group-hover:flex justify-between items-center">
-                                                <i class="bx mr-2 rounded-full border-2 cursor-pointer border-gray-100 shadow-inner"
-                                                    :class="{'bx-star': !isFavourite, 'bxs-star text-yellow-400': isFavourite}"
-                                                    @click="isFavourite = !isFavourite"></i>
-                                                <!-- <i
-                                                    class="bx bx-dots-vertical-rounded  text-green-600 rounded-full cursor-pointer rotate-90 border-2 border-gray-100 shadow-inner"></i>
-                                             -->
-                                                <div x-data="{ open: false }" @click.away="open = false"
-                                                    class="relative">
-                                                    <button @click="open = !open">
-                                                        <i
-                                                            class="bx bx-dots-vertical-rounded  text-green-600 rounded-full cursor-pointer rotate-90 border-2 border-gray-100 shadow-inner"></i>
-                                                    </button>
-                                                    <div x-show="open"
-                                                        x-transition:enter="transition ease-out duration-200"
-                                                        x-transition:enter-start="transform opacity-0 scale-95"
-                                                        x-transition:enter-end="transform opacity-100 scale-100"
-                                                        x-transition:leave="transition ease-in duration-75"
-                                                        x-transition:leave-start="transform opacity-100 scale-100"
-                                                        x-transition:leave-end="transform opacity-0 scale-95"
-                                                        class="absolute z-10 right-0 mt-2 w-44 bg-white shadow-xl rounded divide-y divide-gray-100"
-                                                        @click="open = false" @mouseleave="open = false">
-                                                        <ul class="py-1 text-gray-700">
-                                                            <li><a href="#"
-                                                                    class="flex items-center text-[16px] px-4 py-2 hover:bg-gray-100">
-                                                                    <i class="bx bx-trash mr-2 text-[18px]"></i>Delete
-                                                                    message</a>
-                                                            </li>
-                                                            <li><a href="#"
-                                                                    class="flex items-center text-[16px] px-4 py-2 hover:bg-gray-100"><i
-                                                                        class="bx bxs-quote-alt-left mr-2 text-[16px]"></i>Quote
-                                                                    message</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-sm leading-6 w-max text-gray-700">If you need anything more let me
-                                        know. Thank you</p>
-                                    <p class="text-sm leading-6 w-max text-gray-700">We are going to use that</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="group p-2 rounded-xl hover:bg-gray-200">
-                            <div class="flex">
-                                <div class="relative min-w-[48px] w-8">
-                                    <img src="./assets/avatar.jpg" alt="" class="w-full rounded-full" />
-                                    <div class="w-3 h-3 bg-green-500 border-[1px] top-0 left-0 rounded-full absolute">
-                                    </div>
-                                </div>
-                                <div class="w-[calc(100%-58px)] ml-2">
-                                    <div class="flex justify-between">
-                                        <div class="flex flex-[0] items-end">
-                                            <p
-                                                class="overflow-hidden whitespace-nowrap text-ellipsis font-semibold text-gray-800">
-                                                Poul Sen</p>
-                                            <p class="text-xs ml-2 w-max text-gray-500">5:00AM</p>
-                                        </div>
-                                        <div x-data="{ isFavourite: false }">
-                                            <div class="mr-4 hidden group-hover:flex justify-between items-center">
-                                                <i class="bx mr-2 rounded-full border-2 cursor-pointer border-gray-100 shadow-inner"
-                                                    :class="{'bx-star': !isFavourite, 'bxs-star text-yellow-400': isFavourite}"
-                                                    @click="isFavourite = !isFavourite"></i>
-                                                <!-- <i
-                                                    class="bx bx-dots-vertical-rounded  text-green-600 rounded-full cursor-pointer rotate-90 border-2 border-gray-100 shadow-inner"></i>
-                                             -->
-
-                                                <div x-data="{ open: false }" @click.away="open = false"
-                                                    class="relative">
-                                                    <button @click="open = !open">
-                                                        <i
-                                                            class="bx bx-dots-vertical-rounded  text-green-600 rounded-full cursor-pointer rotate-90 border-2 border-gray-100 shadow-inner"></i>
-                                                    </button>
-                                                    <div x-show="open"
-                                                        x-transition:enter="transition ease-out duration-200"
-                                                        x-transition:enter-start="transform opacity-0 scale-95"
-                                                        x-transition:enter-end="transform opacity-100 scale-100"
-                                                        x-transition:leave="transition ease-in duration-75"
-                                                        x-transition:leave-start="transform opacity-100 scale-100"
-                                                        x-transition:leave-end="transform opacity-0 scale-95"
-                                                        class="absolute z-10 right-0 mt-2 w-44 bg-white shadow-xl rounded divide-y divide-gray-100"
-                                                        @click="open = false" @mouseleave="open = false">
-                                                        <ul class="py-1 text-gray-700">
-                                                            <li><a href="#"
-                                                                    class="flex items-center text-[16px] px-4 py-2 hover:bg-gray-100"><i
-                                                                        class="bx bxs-quote-alt-left mr-2 text-[16px]"></i>Quote
-                                                                    message</a></li>
-                                                            <li><a href="#"
-                                                                    class="flex items-center text-[16px] px-4 py-2 hover:bg-gray-100 "><i
-                                                                        class="bx bx-error-circle mr-2 text-[16px]"></i>Report
-                                                                    message</a></li>
-                                                            <li><a href="#"
-                                                                    class="flex items-center text-[16px] px-4 py-2 hover:bg-gray-100"><i
-                                                                        class="bx bx-envelope mr-2 text-[18px]"></i>Mark
-                                                                    as unread</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-sm leading-6 w-max text-gray-700">If you need anything more let me
-                                        know. Thank you</p>
-                                    <p class="text-sm leading-6 w-max text-gray-700">We are going to use that</p>
-                                </div>
-                            </div>
-                        </li>
                         <li class="group p-2 rounded-xl hover:bg-gray-200">
                             <div class="flex">
                                 <div class="relative min-w-[48px] w-8">
@@ -963,11 +779,15 @@
                                     class="absolute z-10 bottom-[130%] -right-20 mt-2 w-80 bg-white shadow-xl rounded divide-y divide-gray-100"
                                     @click="open = false">
                                     <ul class="py-1 text-gray-700">
-                                        <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Pressing
+                                        <li><a href="#"
+                                                class="block text-[16px] px-4 py-2 font-semibold hover:bg-gray-100">Pressing
                                                 Enter Key will</a></li>
-                                        <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Send
+                                        <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100"><i
+                                                    class="bx bx-circle bg-green-600 text-white rounded-full p-1 mr-2 border-[1px] border-green-600"></i>Send
                                                 message</a></li>
-                                        <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Add a line
+                                        <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100"><i
+                                                    class="bx bx-circle bg-white text-white rounded-full p-1 mr-2 border-[1px] border-green-600"></i>Add
+                                                a line
                                                 break</a></li>
                                         <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">You can
                                                 always use Shift+Enter or Ctrl+Enter to type multi-line messages</a>
@@ -981,37 +801,17 @@
                                 <button @click="open = !open" class="mx-4">
                                     <i class="bx bx-send"></i>
                                 </button>
-                                <div x-show="open" x-transition:enter="transition ease-out duration-200"
-                                    x-transition:enter-start="transform opacity-0 scale-95"
-                                    x-transition:enter-end="transform opacity-100 scale-100"
-                                    x-transition:leave="transition ease-in duration-75"
-                                    x-transition:leave-start="transform opacity-100 scale-100"
-                                    x-transition:leave-end="transform opacity-0 scale-95"
-                                    class="absolute z-10 bottom-[130%] -right-20 mt-2 w-80 bg-white shadow-xl rounded divide-y divide-gray-100"
-                                    @click="open = false">
-                                    <ul class="py-1 text-gray-700">
-                                        <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Pressing
-                                                Enter Key will</a></li>
-                                        <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Send
-                                                message</a></li>
-                                        <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">Add a line
-                                                break</a></li>
-                                        <li><a href="#" class="block text-[16px] px-4 py-2 hover:bg-gray-100">You can
-                                                always use Shift+Enter or Ctrl+Enter to type multi-line messages</a>
-                                        </li>
 
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="w-[480px] h-screen">
+            <div class="h-screen transition-all duration-500 max-w-[400px]"  :class="isOpen ? 'w-0 overflow-hidden' : 'w-[100%]'">
                 <div class="p-5 h-full">
                     <div class="p-2 flex flex-col justify-between bg-[#f7faf7] h-full rounded-3xl">
                         <div class="flex flex-col justify-center items-center">
-                            <div class="relative mt-5 w-12 flex items-center">
+                            <div class="relative mt-5 w-12 flex items-center cursor-pointer">
                                 <img src="./assets/avatar.jpg" alt="" class="w-full rounded-full" />
                             </div>
                             <div class="mt-4 flex items-center">
@@ -1048,7 +848,7 @@
                                                 clip-rule="evenodd"></path>
                                         </svg>
                                     </button>
-                                    <div x-show="openSection === 1" x-collapse class="border-t p-4">
+                                    <div x-show="openSection === 1" x-collapse class="p-4">
                                         <ul class="steps my-4 w-full">
                                             <li class="step step-primary">Register</li>
                                             <li class="step step-primary">Choose plan</li>
@@ -1071,7 +871,7 @@
                                                 clip-rule="evenodd"></path>
                                         </svg>
                                     </button>
-                                    <div x-show="openSection === 2" x-collapse class="border-t">
+                                    <div x-show="openSection === 2" x-collapse class="">
                                         <div x-data="{ inputFocused: false, inputValue: '' }"
                                             class="mt-4 flex justify-center items-center">
                                             <div class="border-[2px] flex items-center rounded-full max-w-[240px] min-w-[240px]"
@@ -1090,7 +890,7 @@
                                         </div>
                                         <ul class="mt-5 w-full pb-3">
                                             <li
-                                                class="group p-3 rounded-2xl hover:bg-gray-200 border-2 border-gray-200 mb-3">
+                                                class="group p-3 rounded-2xl hover:bg-gray-200 border-2 border-gray-200 mb-3 w-full">
                                                 <div class="flex">
                                                     <div class="relative min-w-[48px] w-8">
                                                         <img src="./assets/avatar.jpg" alt=""
@@ -1112,11 +912,11 @@
                                                     </div>
                                                 </div>
                                                 <p
-                                                    class="line-clamp-3 max-w-md pt-2 max-h-[100px] text-sm leading-4 text-gray-700 ">
+                                                    class="line-clamp-3 pt-2 max-h-[100px] text-sm leading-4 text-gray-700 ">
                                                     Thank you.</p>
                                             </li>
                                             <li
-                                                class="group p-3 rounded-2xl hover:bg-gray-200 border-2 border-gray-200 mb-3">
+                                                class="group p-3 rounded-2xl hover:bg-gray-200 border-2 border-gray-200 mb-3 w-full">
                                                 <div class="flex">
                                                     <div class="relative min-w-[48px] w-8">
                                                         <img src="./assets/avatar.jpg" alt=""
@@ -1138,12 +938,12 @@
                                                     </div>
                                                 </div>
                                                 <p
-                                                    class="line-clamp-3 max-w-md pt-2 max-h-[100px] text-sm leading-4 text-gray-700 ">
+                                                    class="line-clamp-3 pt-2 max-h-[100px] text-sm leading-4 text-gray-700 ">
                                                     If you need anything more let me
-                                                    know. Thank you. I can do it perfectly</p>
+                                                    know. Thank you. I can do it perfectlyadfasdfasdfasdfasdfas</p>
                                             </li>
                                             <li
-                                                class="group p-3 rounded-2xl hover:bg-gray-200 border-2 border-gray-200 mb-3">
+                                                class="group p-3 rounded-2xl hover:bg-gray-200 border-2 border-gray-200 mb-3 w-full">
                                                 <div class="flex">
                                                     <div class="relative min-w-[48px] w-8">
                                                         <img src="./assets/avatar.jpg" alt=""
@@ -1165,7 +965,7 @@
                                                     </div>
                                                 </div>
                                                 <p
-                                                    class="line-clamp-3 max-w-md pt-2 max-h-[100px] text-sm leading-4 text-gray-700 ">
+                                                    class="line-clamp-3 pt-2 max-h-[100px] text-sm leading-4 text-gray-700 ">
                                                     yes, of course</p>
                                             </li>
 
@@ -1188,43 +988,241 @@
                                                 clip-rule="evenodd"></path>
                                         </svg>
                                     </button>
-                                    <div x-show="openSection === 3" x-collapse class="border-t">
-                                        <ul class="mt-5 w-full pb-3">
-                                            <li
-                                                class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3">
-                                                <div class="ml-2">
-                                                    <div class="flex justify-between items-center">
-                                                        <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
-                                                        <a href="#"
-                                                        class="line-clamp-3 max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1">
-                                                        http://luxury-shoes.fr/</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3">
-                                                <div class="ml-2">
-                                                    <div class="flex justify-between items-center">
-                                                        <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
-                                                        <a href="#"
-                                                        class="line-clamp-3 max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1">
-                                                        http://luxury-shoes.fr/</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3">
-                                                <div class="ml-2">
-                                                    <div class="flex justify-between items-center">
-                                                        <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
-                                                        <a href="#"
-                                                            class="line-clamp-3 max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1">
-                                                            http://luxury-shoes.fr/</a>
-                                                    </div>
+                                    <div x-show="openSection === 3" x-collapse class="">
 
+                                        <div x-data="{ inputFocused: false, inputValue: '' }"
+                                            class="mt-4 flex justify-center items-center">
+                                            <div class="border-[2px] flex items-center rounded-full max-w-[240px] min-w-[240px] mb-2"
+                                                :class="{'border-gray-600': inputFocused}">
+                                                <i class="pl-2 bx bx-search"></i>
+                                                <input class="p-1 rounded-full text-[15px] outline-none w-36"
+                                                    @focus="inputFocused = true" @blur="inputFocused = false"
+                                                    placeholder="Search" x-model="inputValue" />
+                                                <i class="bx bx-x-circle cursor-pointer pr-3" @click="inputValue = ''"
+                                                    x-show="inputValue.length > 0"></i>
+                                            </div>
+                                            <div x-data="{ open: false }" @click.away="open = false" class="relative">
+                                                <button @click="open = !open">
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div x-data="{ activeTab: 'tab1' }" class="w-full">
+                                            <!-- Tabs -->
+                                            <ul class="flex border-b">
+                                                <li class="mr-1" :class="{ '-mb-px': activeTab === 'tab1' }">
+                                                    <a :class="{ 'border-b-2 text-green-500 border-green-500': activeTab === 'tab1', 'text-gray-600 hover:text-green-600': activeTab !== 'tab1' }"
+                                                        class="bg-white inline-block py-2 px-2 font-semibold cursor-pointer text-[16px]"
+                                                        @click.prevent="activeTab = 'tab1'">All</a>
+                                                </li>
+                                                <li class="mr-1" :class="{ '-mb-px': activeTab === 'tab2' }">
+                                                    <a :class="{ 'border-b-2 text-green-500 border-green-500': activeTab === 'tab2', 'text-gray-600 hover:text-green-600': activeTab !== 'tab2' }"
+                                                        class="bg-white inline-block py-2 px-2 font-semibold cursor-pointer text-[16px]"
+                                                        @click.prevent="activeTab = 'tab2'">Files</a>
+                                                </li>
+                                                <li class="mr-1" :class="{ '-mb-px': activeTab === 'tab3' }">
+                                                    <a :class="{ 'border-b-2 text-green-500 border-green-500': activeTab === 'tab3', 'text-gray-600 hover:text-green-600': activeTab !== 'tab3' }"
+                                                        class="bg-white inline-block py-2 px-2 font-semibold cursor-pointer text-[16px]"
+                                                        @click.prevent="activeTab = 'tab3'">Links</a>
+                                                </li>
+                                            </ul>
+
+                                            <!-- Tab Contents -->
+                                            <div class="w-full pt-4">
+                                                <div x-show="activeTab === 'tab1'" class="text-left">
+                                                    <ul class="mt-5 w-full pb-3">
+                                                        <li
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px]">
+                                                            <div class="ml-2">
+                                                                <div class="flex justify-between items-center w-full">
+                                                                    <img src="./assets/file_img.png" alt=""
+                                                                        class="h-[30px] mr-2">
+                                                                    <div class="w-[80%]">
+                                                                        <div
+                                                                            class="flex justify-between items-center w-full">
+                                                                            <a href="#"
+                                                                                class="overflow-hidden whitespace-nowrap text-ellipsis max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                                http://luxury-shoes.fr/asdfasdfasdfasfd</a>
+                                                                            <p class="text-[14px] text-gray-200">80.1KB
+                                                                            </p>
+                                                                        </div>
+
+                                                                        <div class="flex justify-between items-center">
+                                                                            <p class="text-[14px] text-gray-400">Andre
+                                                                                Simoni</p>
+                                                                            <p class="text-[14px] text-gray-400">Today
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px]">
+                                                            <div class="ml-2">
+                                                                <div class="flex justify-between items-center">
+                                                                    <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
+                                                                    <div
+                                                                        class="ml-3 w-full overflow-hidden whitespace-nowrap text-ellipsis text-green-600">
+                                                                        <a href="#"
+                                                                            class=" max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                            http://luxury-shoes.fr/asdfasdfasdfasfd</a>
+                                                                        <div class="flex justify-between items-center">
+                                                                            <p class="text-[14px] text-gray-400">Andre
+                                                                                Simoni</p>
+                                                                            <p class="text-[14px] text-gray-400">Today
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px]">
+                                                            <div class="ml-2">
+                                                                <div class="flex justify-between items-center">
+                                                                    <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
+                                                                    <div
+                                                                        class="ml-3 w-full overflow-hidden whitespace-nowrap text-ellipsis text-green-600">
+                                                                        <a href="#"
+                                                                            class=" max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                            http://luxury-shoes.fr/asdfasdfasdfasfd</a>
+                                                                        <div class="flex justify-between items-center">
+                                                                            <p class="text-[14px] text-gray-400">Andre
+                                                                                Simoni</p>
+                                                                            <p class="text-[14px] text-gray-400">Today
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px]">
+                                                            <div class="ml-2">
+                                                                <div class="flex justify-between items-center">
+                                                                    <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
+                                                                    <div
+                                                                        class="ml-3 w-full overflow-hidden whitespace-nowrap text-ellipsis text-green-600">
+                                                                        <a href="#"
+                                                                            class=" max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                            http://luxury-shoes.fr/asdfasdfasdfasfd</a>
+                                                                        <div class="flex justify-between items-center">
+                                                                            <p class="text-[14px] text-gray-400">Andre
+                                                                                Simoni</p>
+                                                                            <p class="text-[14px] text-gray-400">Today
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-                                            </li>
-                                        </ul>
+                                                <div x-show="activeTab === 'tab2'" class="text-left">
+                                                    <ul class="mt-5 w-full pb-3">
+                                                        <li
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px]">
+                                                            <div class="ml-2">
+                                                                <div class="flex justify-between items-center w-full">
+                                                                    <img src="./assets/file_img.png" alt=""
+                                                                        class="h-[30px] mr-2">
+                                                                    <div class="w-[80%]">
+                                                                        <div
+                                                                            class="flex justify-between items-center w-full">
+                                                                            <a href="#"
+                                                                                class="overflow-hidden whitespace-nowrap text-ellipsis max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                                http://luxury-shoes.fr/asdfasdfasdfasfd</a>
+                                                                            <p class="text-[14px] text-gray-200">80.1KB
+                                                                            </p>
+                                                                        </div>
+
+                                                                        <div class="flex justify-between items-center">
+                                                                            <p class="text-[14px] text-gray-400">Andre
+                                                                                Simoni</p>
+                                                                            <p class="text-[14px] text-gray-400">Today
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div x-show="activeTab === 'tab3'" class="text-left">
+                                                    <ul class="mt-5 w-full pb-3">
+                                                        <li
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px]">
+                                                            <div class="ml-2">
+                                                                <div class="flex justify-between items-center">
+                                                                    <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
+                                                                    <div
+                                                                        class="ml-3 w-full overflow-hidden whitespace-nowrap text-ellipsis text-green-600">
+                                                                        <a href="#"
+                                                                            class=" max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                            http://luxury-shoes.fr/asdfasdfasdfasfd</a>
+                                                                        <div class="flex justify-between items-center">
+                                                                            <p class="text-[14px] text-gray-400">Andre
+                                                                                Simoni</p>
+                                                                            <p class="text-[14px] text-gray-400">Today
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px]">
+                                                            <div class="ml-2">
+                                                                <div class="flex justify-between items-center">
+                                                                    <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
+                                                                    <div
+                                                                        class="ml-3 w-full overflow-hidden whitespace-nowrap text-ellipsis text-green-600">
+                                                                        <a href="#"
+                                                                            class=" max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                            http://luxury-shoes.fr/asdfasdfasdfasfd</a>
+                                                                        <div class="flex justify-between items-center">
+                                                                            <p class="text-[14px] text-gray-400">Andre
+                                                                                Simoni</p>
+                                                                            <p class="text-[14px] text-gray-400">Today
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px]">
+                                                            <div class="ml-2">
+                                                                <div class="flex justify-between items-center">
+                                                                    <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
+                                                                    <div
+                                                                        class="ml-3 w-full overflow-hidden whitespace-nowrap text-ellipsis text-green-600">
+                                                                        <a href="#"
+                                                                            class=" max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                            http://luxury-shoes.fr/asdfasdfasdfasfd</a>
+                                                                        <div class="flex justify-between items-center">
+                                                                            <p class="text-[14px] text-gray-400">Andre
+                                                                                Simoni</p>
+                                                                            <p class="text-[14px] text-gray-400">Today
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -1240,8 +1238,11 @@
                                                 clip-rule="evenodd"></path>
                                         </svg>
                                     </button>
-                                    <div x-show="openSection === 4" x-collapse class="border-t p-4">
-                                        Content for Accordion 2.
+                                    <div x-show="openSection === 4" x-collapse class="mt-5">
+                                        <textarea name="" id="" cols="30" rows="10"
+                                            class="overflow-visible outline-none border-2 border-gray-400 rounded-md text-[16px] p-2 w-full"
+                                            placeholder="Please write personal notepad"></textarea>
+
                                     </div>
                                 </div>
                             </div>

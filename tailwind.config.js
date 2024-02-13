@@ -24,7 +24,7 @@ module.exports = {
           display: '-webkit-box',
           '-webkit-box-orient': 'vertical',
           '-webkit-line-clamp': '3', // Adjust the number for different line clamps
-          textOverflow: 'ellipsis',
+          textoverflow: 'ellipsis',
         },
       })
     },
