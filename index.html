@@ -14,7 +14,6 @@
 
 <body>
     <main class="h-screen flex" x-data="{
-        isClicked : false,
         isOpen: true,
         toggleWidth() {
             this.isOpen = !this.isOpen;
@@ -28,7 +27,7 @@
             isOpen = getWidth() < 1280 ? true : false;
         });
     }">
-        <div class="xl:px-0 xl:ml-8 xl:max-w-[312px] lg:max-w-72 lg:flex flex-col h-screen w-full m-auto p-5 pt-4" ::class="isClicked ? 'sm:hidden' : 'sm:flex'">
+        <div class="xl:px-0 xl:ml-8 xl:max-w-[312px] lg:max-w-72 lg:flex flex-col h-screen w-full m-auto p-5 pt-4 sm:hidden">
             <div class="">
                 <div class=" flex justify-between items-center">
                     <h2 class="text-3xl font-semibold">Messages</h2>
@@ -263,7 +262,7 @@
                 :class="isOpen ? 'px-8' : 'px-0'">
                 <div class="">
                     <div class="flex justify-between items-center pb-4 border-b-[1px] border-b-gray-300">
-                        <div class="cursor-pointer lg:hidden" @clickk="isClicked = !isClicked">
+                        <div class="cursor-pointer lg:hidden">
                             <i class="bx bx-left-arrow-alt text-3xl"></i>
                         </div>
                         <div class="pl-4 flex items-end">
