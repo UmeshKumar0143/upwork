@@ -13,27 +13,22 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-    <main class="h-screen flex" x-data="{ isOpen: false }">
-        <div class="xl:px-0 xl:ml-8  xl:max-w-[312px] flex flex-col h-screen w-full m-auto p-5 pt-4 ">
-=======
-    <main class="h-screen flex" 
-    x-data="{
+    <main class="h-screen flex" x-data="{
+        isClicked : false,
         isOpen: true,
         toggleWidth() {
             this.isOpen = !this.isOpen;
         },
         getWidth() {
             return window.innerWidth;
-        }
+        }, 
     }" x-init="() => {
         isOpen = getWidth() < 1280 ? true : false;
         window.addEventListener('resize', () => {
             isOpen = getWidth() < 1280 ? true : false;
         });
     }">
-        <div class="xl:px-0 xl:ml-8 xl:max-w-[312px] lg:max-w-72 flex flex-col h-screen w-full m-auto p-5 pt-4 ">
->>>>>>> a301ab15ff517400cb878fc9f1ea9037eddd5ccb
+        <div class="xl:px-0 xl:ml-8 xl:max-w-[312px] lg:max-w-72 lg:flex flex-col h-screen w-full m-auto p-5 pt-4" ::class="isClicked ? 'sm:hidden' : 'sm:flex'">
             <div class="">
                 <div class=" flex justify-between items-center">
                     <h2 class="text-3xl font-semibold">Messages</h2>
@@ -68,10 +63,10 @@
                 </div>
 
                 <div x-data="{ inputFocused: false, inputValue: '' }" class="mt-4 flex justify-between items-center">
-                    <div class="border-[2px] flex items-center rounded-full max-[1280px]: w-[87%]"
+                    <div class="border-[2px] flex items-center rounded-full max-[1280px]: w-[80%]"
                         :class="{'border-gray-600': inputFocused}">
                         <i class="pl-2 bx bx-search text-2xl"></i>
-                        <input class="p-2 rounded-full text-[15px] outline-none w-60" @focus="inputFocused = true"
+                        <input class="p-2 rounded-full text-[15px] outline-none w-full" @focus="inputFocused = true"
                             @blur="inputFocused = false" placeholder="Search" x-model="inputValue" />
                         <i class="bx bx-x-circle cursor-pointer pr-3" @click="inputValue = ''"
                             x-show="inputValue.length > 0"></i>
@@ -131,7 +126,8 @@
                             </div>
                             <div class="w-[calc(100%-58px)] ml-2">
                                 <div class="flex flex-[0] items-center justify-between">
-                                    <div class="flex items-center justify-between w-full overflow-hidden whitespace-nowrap text-ellipsis ">
+                                    <div
+                                        class="flex items-center justify-between w-full overflow-hidden whitespace-nowrap text-ellipsis ">
                                         <i class="bx " :class="{ 'bxs-star text-gray-600': favourites['div1'] }"></i>
                                         <p :class="{ 'text-white': activeDiv === 'div1' }"
                                             class="w-full overflow-hidden whitespace-nowrap text-ellipsis">
@@ -201,7 +197,8 @@
                             </div>
                             <div class="w-[calc(100%-58px)] ml-2">
                                 <div class="flex flex-[0] items-center justify-between">
-                                    <div class="flex items-center justify-between w-full overflow-hidden whitespace-nowrap text-ellipsis ">
+                                    <div
+                                        class="flex items-center justify-between w-full overflow-hidden whitespace-nowrap text-ellipsis ">
                                         <i class="bx " :class="{ 'bxs-star text-gray-600': favourites['div2'] }"></i>
                                         <p :class="{ 'text-white': activeDiv === 'div2' }"
                                             class="w-full overflow-hidden whitespace-nowrap text-ellipsis">
@@ -261,16 +258,14 @@
                 </ul>
             </div>
         </div>
-<<<<<<< HEAD
-        <div class="flex h-screen xl:w-[calc(100%-260px)]">
-            <div class="pl-8 w-full pt-5 flex flex-col h-full justify-between transition-all duration-500"
-=======
         <div class="flex h-screen w-full">
             <div class="xl:pl-8 lg:pl-5 w-full pt-5 flex flex-col h-full justify-between transition-all duration-500"
->>>>>>> a301ab15ff517400cb878fc9f1ea9037eddd5ccb
                 :class="isOpen ? 'px-8' : 'px-0'">
                 <div class="">
                     <div class="flex justify-between items-center pb-4 border-b-[1px] border-b-gray-300">
+                        <div class="cursor-pointer lg:hidden" @clickk="isClicked = !isClicked">
+                            <i class="bx bx-left-arrow-alt text-3xl"></i>
+                        </div>
                         <div class="pl-4 flex items-end">
                             <h5 class="text-xl font-semibold">Jo Sal</h5>
                             <h5 class="ml-6 text-sm ">
@@ -453,7 +448,7 @@
 
                         <div class="flex justify-center items-center">
                             <div class="border-[1px] m-2 rounded-sm border-gray-200 w-5/12"></div>
-                            <p class="text-gray-400 text-[18px]">Fri, Feb 09</p>
+                            <p class="text-gray-400 text-[18px] min-w-32 text-center">Fri, Feb 09</p>
                             <div class="border-[1px] m-2 rounded-sm border-gray-200 w-5/12"></div>
                         </div>
                         <li class="group p-2 rounded-xl hover:bg-gray-200">
@@ -767,7 +762,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="relative pb-5 shadow-[-4px_-6px_3px_rgb(240,240,240),4px_-6px_3px_rgb(240,240,240)] rounded-2xl">
+                <div
+                    class="relative pb-5 shadow-[-4px_-6px_3px_rgb(240,240,240),4px_-6px_3px_rgb(240,240,240)] rounded-2xl">
                     <div class="container mx-auto p-4 bottom-[100%] absolute">
                         <div class="flex flex-col items-center justify-center">
                             <div id="preview" class="bg-gray-300 rounded-lg">
@@ -775,8 +771,7 @@
                         </div>
                     </div>
                     <textarea placeholder="Send message"
-                        class="resize-none w-full p-3 leading-6 outline-none text-sm rounded-t-lg "
-                        cols="4"></textarea>
+                        class="resize-none w-full p-3 leading-6 outline-none text-sm rounded-t-lg " cols="4"></textarea>
                     <div class="flex items-center justify-between">
                         <div class="">
                             <button class="mx-4"><i class="bx bx-text"></i></button>
@@ -830,7 +825,8 @@
                     </div>
                 </div>
             </div>
-            <div class="h-screen transition-all duration-500 max-w-[360px]"  :class="isOpen ? 'w-0 overflow-hidden' : 'w-full'">
+            <div class="h-screen transition-all duration-500 max-w-[360px]"
+                :class="isOpen ? 'w-0 overflow-hidden' : 'w-full'">
                 <div class="p-5 h-full">
                     <div class="p-2 flex flex-col justify-between bg-[#f7faf7] h-full rounded-3xl">
                         <div class="flex flex-col justify-center items-center">
@@ -1055,7 +1051,7 @@
                                                 <div x-show="activeTab === 'tab1'" class="text-left">
                                                     <ul class="mt-5 w-full pb-3">
                                                         <li
-                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px] m-auto">
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  xl:max-w-[270px] lg:max-w-[245px] m-auto">
                                                             <div class="ml-2">
                                                                 <div class="flex justify-between items-center w-full">
                                                                     <img src="./assets/file_img.png" alt=""
@@ -1082,14 +1078,14 @@
                                                             </div>
                                                         </li>
                                                         <li
-                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px] m-auto">
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  xl:max-w-[270px] lg:max-w-[245px] m-auto">
                                                             <div class="ml-2">
                                                                 <div class="flex justify-between items-center">
                                                                     <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
                                                                     <div
                                                                         class="ml-3 w-full overflow-hidden whitespace-nowrap text-ellipsis text-green-600">
                                                                         <a href="#"
-                                                                            class=" max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                            class="overflow-hidden max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
                                                                             http://luxury-shoes.fr/asdfasdfasdfasfd</a>
                                                                         <div class="flex justify-between items-center">
                                                                             <p class="text-[14px] text-gray-400">Andre
@@ -1103,14 +1099,14 @@
                                                             </div>
                                                         </li>
                                                         <li
-                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px] m-auto">
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  xl:max-w-[270px] lg:max-w-[245px] m-auto">
                                                             <div class="ml-2">
                                                                 <div class="flex justify-between items-center">
                                                                     <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
                                                                     <div
                                                                         class="ml-3 w-full overflow-hidden whitespace-nowrap text-ellipsis text-green-600">
                                                                         <a href="#"
-                                                                            class=" max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                            class="overflow-hidden max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
                                                                             http://luxury-shoes.fr/asdfasdfasdfasfd</a>
                                                                         <div class="flex justify-between items-center">
                                                                             <p class="text-[14px] text-gray-400">Andre
@@ -1124,14 +1120,14 @@
                                                             </div>
                                                         </li>
                                                         <li
-                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px] m-auto">
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  xl:max-w-[270px] lg:max-w-[245px] m-auto">
                                                             <div class="ml-2">
                                                                 <div class="flex justify-between items-center">
                                                                     <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
                                                                     <div
                                                                         class="ml-3 w-full overflow-hidden whitespace-nowrap text-ellipsis text-green-600">
                                                                         <a href="#"
-                                                                            class=" max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                            class="overflow-hidden max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
                                                                             http://luxury-shoes.fr/asdfasdfasdfasfd</a>
                                                                         <div class="flex justify-between items-center">
                                                                             <p class="text-[14px] text-gray-400">Andre
@@ -1149,7 +1145,7 @@
                                                 <div x-show="activeTab === 'tab2'" class="text-left">
                                                     <ul class="mt-5 w-full pb-3">
                                                         <li
-                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px] m-auto">
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  xl:max-w-[270px] lg:max-w-[245px] m-auto">
                                                             <div class="ml-2">
                                                                 <div class="flex justify-between items-center w-full">
                                                                     <img src="./assets/file_img.png" alt=""
@@ -1180,14 +1176,14 @@
                                                 <div x-show="activeTab === 'tab3'" class="text-left">
                                                     <ul class="mt-5 w-full pb-3">
                                                         <li
-                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px] m-auto">
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  xl:max-w-[270px] lg:max-w-[245px] m-auto">
                                                             <div class="ml-2">
                                                                 <div class="flex justify-between items-center">
                                                                     <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
                                                                     <div
                                                                         class="ml-3 w-full overflow-hidden whitespace-nowrap text-ellipsis text-green-600">
                                                                         <a href="#"
-                                                                            class=" max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                            class="overflow-hidden max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
                                                                             http://luxury-shoes.fr/asdfasdfasdfasfd</a>
                                                                         <div class="flex justify-between items-center">
                                                                             <p class="text-[14px] text-gray-400">Andre
@@ -1201,14 +1197,14 @@
                                                             </div>
                                                         </li>
                                                         <li
-                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px] m-auto">
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  xl:max-w-[270px] lg:max-w-[245px] m-auto">
                                                             <div class="ml-2">
                                                                 <div class="flex justify-between items-center">
                                                                     <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
                                                                     <div
                                                                         class="ml-3 w-full overflow-hidden whitespace-nowrap text-ellipsis text-green-600">
                                                                         <a href="#"
-                                                                            class=" max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                            class="overflow-hidden max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
                                                                             http://luxury-shoes.fr/asdfasdfasdfasfd</a>
                                                                         <div class="flex justify-between items-center">
                                                                             <p class="text-[14px] text-gray-400">Andre
@@ -1222,14 +1218,14 @@
                                                             </div>
                                                         </li>
                                                         <li
-                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  max-w-[270px] m-auto">
+                                                            class="group p-3 rounded-xl hover:bg-gray-200 border-2 border-gray-200 mb-3  xl:max-w-[270px] lg:max-w-[245px] m-auto">
                                                             <div class="ml-2">
                                                                 <div class="flex justify-between items-center">
                                                                     <i class="bx bx-link-alt rotate-45 text-[25px]"></i>
                                                                     <div
                                                                         class="ml-3 w-full overflow-hidden whitespace-nowrap text-ellipsis text-green-600">
                                                                         <a href="#"
-                                                                            class=" max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
+                                                                            class="overflow-hidden max-h-[100px] text-sm font-semibold leading-4 text-green-600 pb-1 text-[16px]">
                                                                             http://luxury-shoes.fr/asdfasdfasdfasfd</a>
                                                                         <div class="flex justify-between items-center">
                                                                             <p class="text-[14px] text-gray-400">Andre
