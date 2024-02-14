@@ -47,6 +47,88 @@
         <div class="w-1/5 bg-gray-500">w-1/5</div>
         <div class="w-4/5 bg-sky-500">w-4/5</div>
     </div>
+    <div x-data="{ showModal: false }">
+        <!-- Button to toggle the modal -->
+        <button @click="showModal = true">Open Modal</button>
+    
+        <!-- Modal -->
+        <div x-show="showModal" @click.away="showModal = false" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <!-- Modal content -->
+                <p>This is the modal content. You can put whatever you want here.</p>
+                <button @click="showModal = false">Close Modal</button>
+                <button @click="showModal = false">Close Modal</button>
+                <button @click="showModal = false">Close Modal</button>
+            </div>
+        </div>
+        <div x-data="{ showModal: false }">
+            <!-- Button to toggle the modal -->
+            <button @click="showModal = true">Open Modal</button>
+        
+            <!-- Modal -->
+            <div x-show="showModal" @click.away="showModal = false" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
+                <div x-show.transition.origin.left.duration.500ms="showModal" class="bg-white p-8 rounded-lg shadow-md" style="transform: translateX(-100%);">
+                    <!-- Modal content -->
+                    <p>This is the modal content. You can put whatever you want here.</p>
+                    <button @click="showModal = false">Close Modal</button>
+                </div>
+            </div>
+        </div>
+        
+        <div x-data="{ showModal: false }">
+            <!-- Button to toggle the modal -->
+            <button @click="showModal = true">Open Modal</button>
+        
+            <!-- Modal -->
+            <div x-show="showModal" @click.away="showModal = false" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
+                <div x-show.transition.origin.left.duration.500ms="showModal" class="fixed inset-0 flex items-center justify-center bg-transparent">
+                    <div class="bg-white p-8 rounded-lg shadow-md w-full h-full" style="width: 100%; height: 100%; max-width: 90vw; max-height: 90vh;">
+                        <!-- Modal content -->
+                        <p>This is the modal content. You can put whatever you want here.</p>
+                        <button @click="showModal = false">Close Modal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div 
+    x-data="{ showModal: false, activeDiv: '' }"
+    x-on:click="hideModal(); setActiveDiv('div1')"
+    :class="{ 'bg-[#14a800]': activeDiv === 'div1', 'hover:bg-gray-300': activeDiv !== 'div1'}"
+>
+    <!-- Content of the div goes here -->
+</div>
+
+<!-- ------------------- -->
+<div x-data="{ showModal: false }">
+    <!-- Button to toggle the modal -->
+    <button @click="showModal = true">Open Modal</button>
+
+    <!-- Modal -->
+    <div x-show="showModal" @click.away="showModal = false" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
+        <div x-show.transition.origin.left.duration.500ms="showModal" class="fixed inset-0 flex items-center justify-center bg-transparent">
+            <div class="bg-white p-8 rounded-lg shadow-md" style="width: 90%; height: 90%; max-width: 90vw; max-height: 90vh;">
+                <!-- Modal content -->
+                <p>This is the modal content. You can put whatever you want here.</p>
+                <button @click="showModal = false">Close Modal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ------------------- -->
+
+
+    </div>
+    <script>
+        function hideModal() {
+            this.showModal = false;
+        }
+    
+        function setActiveDiv(divName) {
+            this.activeDiv = divName;
+        }
+    </script>
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine-ie11.js"></script>
 </body>
 

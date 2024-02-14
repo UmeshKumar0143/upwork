@@ -13,6 +13,9 @@ module.exports = {
           textOverflow: 'ellipsis',
         },
       },
+      fontFamily: {
+        
+      }
     },
   },
   plugins: [
