@@ -13,20 +13,8 @@
 </head>
 
 <body>
-    <main class="h-screen flex" x-data="{
-        isOpen: window.innerWidth < 1280 ? true : false,
-        toggleWidth() {
-            this.isOpen = !this.isOpen;
-        },
-        getWidth() {
-            return window.innerWidth;
-        }
-    }" x-init="() => {
-        window.addEventListener('resize', () => {
-            isOpen = getWidth() < 1280 ? true : false;
-        });
-    }">
-        <div class="xl:px-0 xl:ml-8 xl:w-[20em] flex flex-col h-screen w-full m-auto p-5 pt-4 ">
+    <main class="h-screen flex" x-data="{isOpen:false}">
+        <div class="xl:px-0 xl:ml-8 xl:w-[20rem] flex flex-col h-screen w-full m-auto p-5 pt-4 ">
             <div class="">
                 <div class=" flex justify-between items-center">
                     <h2 class="text-3xl font-semibold">Messages</h2>
@@ -73,10 +61,6 @@
                         <button @click="open = !open">
                             <i class="bx bx-slider-alt text-green-600"></i>
                         </button>
-<!-- jlhjlhuklhjkl -->
-<button @click="open = !open">
-    <i class="bx bx-slider-alt text-green-600"></i>
-</button>
                         <div x-show="open" x-transition:enter="transition ease-out duration-200"
                             x-transition:enter-start="transform opacity-0 scale-95"
                             x-transition:enter-end="transform opacity-100 scale-100"
