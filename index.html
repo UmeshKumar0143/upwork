@@ -13,8 +13,22 @@
 </head>
 
 <body>
-    <main class="h-screen flex" x-data="{isOpen:false}">
-        <div class="xl:px-0 xl:ml-8 xl:w-[20rem] flex flex-col h-screen w-full m-auto p-5 pt-4 ">
+    <main class="h-screen flex" 
+    x-data="{
+        isOpen: true,
+        toggleWidth() {
+            this.isOpen = !this.isOpen;
+        },
+        getWidth() {
+            return window.innerWidth;
+        }
+    }" x-init="() => {
+        isOpen = getWidth() < 1280 ? true : false;
+        window.addEventListener('resize', () => {
+            isOpen = getWidth() < 1280 ? true : false;
+        });
+    }">
+        <div class="xl:px-0 xl:ml-8 xl:max-w-[312px] lg:max-w-72 flex flex-col h-screen w-full m-auto p-5 pt-4 ">
             <div class="">
                 <div class=" flex justify-between items-center">
                     <h2 class="text-3xl font-semibold">Messages</h2>
@@ -242,8 +256,8 @@
                 </ul>
             </div>
         </div>
-        <div class="xl:flex h-screen hidden xl:w-[calc(100%-260px)]">
-            <div class="pl-8 w-full pt-5 flex flex-col h-full justify-between transition-all duration-500"
+        <div class="flex h-screen w-full">
+            <div class="xl:pl-8 lg:pl-5 w-full pt-5 flex flex-col h-full justify-between transition-all duration-500"
                 :class="isOpen ? 'px-8' : 'px-0'">
                 <div class="">
                     <div class="flex justify-between items-center pb-4 border-b-[1px] border-b-gray-300">
@@ -806,7 +820,7 @@
                     </div>
                 </div>
             </div>
-            <div class="h-screen transition-all duration-500 max-w-[380px]"  :class="isOpen ? 'w-0 overflow-hidden' : 'w-full'">
+            <div class="h-screen transition-all duration-500 max-w-[360px]"  :class="isOpen ? 'w-0 overflow-hidden' : 'w-full'">
                 <div class="p-5 h-full">
                     <div class="p-2 flex flex-col justify-between bg-[#f7faf7] h-full rounded-3xl">
                         <div class="flex flex-col justify-center items-center">
